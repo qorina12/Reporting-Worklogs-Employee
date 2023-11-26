@@ -127,13 +127,13 @@ class WorklogController extends Controller
                         $data[$key][$i][$k] = round($difference);
                         if(round($difference) >= 8)
                         {
-                            $data[$key][$i][$k] = ['value'=>1,'jam'=>round($difference)];
+                            $data[$key][$i][$k] = ['value'=>1,'jam'=>round($difference),'awal'=>$w->jam_awal,'akhir'=>$w->jam_akhir];
                         }else{
-                            $data[$key][$i][$k] = ['value'=>0.5,'jam'=>round($difference)];
+                            $data[$key][$i][$k] = ['value'=>0.5,'jam'=>round($difference),'awal'=>$w->jam_awal,'akhir'=>$w->jam_akhir];
                         }
                     }else
                     {
-                        $data[$key][$i][$k] = ['value'=>0,'jam'=>0];
+                        $data[$key][$i][$k] = ['value'=>0,'jam'=>0,'awal'=>0,'akhir'=>0];
                     }
                 }
                 $data[$key][$i]['value'] = 0;

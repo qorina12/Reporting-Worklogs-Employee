@@ -26,7 +26,10 @@
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <img src="{{asset('template/images/logos/favicon.png')}}" width="35" alt="">
                 </a>
-                <p class="text-center">Reporting Result Worklogs Employee</p>
+                <p class="text-center">
+                  Reporting Result Worklogs Employee &nbsp;&nbsp;
+                  <a class="btn btn-primary btn-sm" href="{{url('/')}}">Back To Home</a>
+                </p>
                 <p class="text-center">
                   From : {{$request->start_date}} To : {{$request->end_date}}
                 </p>
@@ -51,6 +54,8 @@
                       <thead>
                         <tr>
                            <th>Tanggal</th>
+                           <th>Awal</th>
+                           <th>Akhir</th>
                            <th>Jam</th>
                            <th>Value</th>
                         </tr>
@@ -66,6 +71,16 @@
                               @if($tglKey != 'jam')
                                 {{$tglKey}}
                               @endif
+                            @endif
+                          </td>
+                          <td>
+                            @if(isset($data[$loopKey][$projectKey][$tglKey]['awal']))
+                              {{$data[$loopKey][$projectKey][$tglKey]['awal']}}
+                            @endif
+                          </td>
+                          <td>
+                            @if(isset($data[$loopKey][$projectKey][$tglKey]['akhir']))
+                              {{$data[$loopKey][$projectKey][$tglKey]['akhir']}}
                             @endif
                           </td>
                           <td>
