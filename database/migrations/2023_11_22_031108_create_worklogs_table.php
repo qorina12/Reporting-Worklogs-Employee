@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('id_projects')->unsigned();
             $table->foreign('id_projects')->references('id')->on('projects');
             $table->date('tanggal');
-            $table->integer('jam_kerja');
-            $table->string('ketidakhadiran');
+            $table->time('jam_awal');
+            $table->time('jam_akhir');
             $table->timestamps();
         });
     }

@@ -8,6 +8,8 @@
   <title>WORKLOG</title>
   <link rel="shortcut icon" type="image/png" href="{{asset('template/images/logos/favicon.png')}}" />
   <link rel="stylesheet" href="{{asset('template/css/styles.min.css') }}" />
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -18,33 +20,46 @@
       class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
       <div class="d-flex align-items-center justify-content-center w-100">
         <div class="row justify-content-center w-100">
-          <div class="col-md-8 col-lg-6 col-xxl-3">
+          <div class="col-md-12">
             <div class="card mb-0">
               <div class="card-body">
                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <img src="{{asset('template/images/logos/favicon.png')}}" width="35" alt="">
                 </a>
                 <p class="text-center">Reporting Worklogs Employee</p>
-                <form>
+                <form action="{{url('report')}}">
                   <div class="mb-3">
-                    <label for="exampleInputtext1" class="form-label">Nama</label>
-                    <input type="text" class="form-control" id="exampleInputtext1" aria-describedby="textHelp">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Lokasi 1</label>
-                    <select id="exampleInputEmail1" class="form-select">
-                        <option>Malang</option>
-                        <option>Batu</option>
+                    <label for="exampleInputtext12" class="form-label">Karyawan</label>
+                    <select id="exampleInputEmail12" class="form-select js-example-basic-single" name="id_employee[]" multiple required>
+                        <option value="" disabled>Pilih Karyawan</option>
+                          @foreach($employee as $key => $item)
+                            <option value="{{$item->id}}">{{$item->nama_karyawan}}</option>
+                          @endforeach
                     </select>
                   </div>
-                  <div class="mb-4">
-                    <label for="exampleInputEmail1" class="form-label">Lokasi 2</label>
-                    <select id="exampleInputEmail1" class="form-select">
-                        <option>Malang</option>
-                        <option>Batu</option>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail13" class="form-label">Project</label>
+                    <select id="exampleInputEmail13" class="form-select js-example-basic-single" multiple name="id_project[]" required>
+                         <option value="" disabled>Pilih Project</option>
+                          @foreach($project as $key => $item)
+                            <option value="{{$item->id}}">{{$item->nama_project}}</option>
+                          @endforeach
                     </select>
                   </div>
-                  <a href="./index.html" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">SUBMIT</a>
+                  <div class="mb-3">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="exampleInputEmail1" class="form-label">Tanggal Awal</label>
+                        <input required type="date" class="form-control" value="{{date('Y-m-d')}}" name="start_date">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="exampleInputEmail1" class="form-label">Tanggal Akhir</label>
+                        <input required type="date" class="form-control" value="{{date('Y-m-d')}}" name="end_date">
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">SUBMIT</button>
                 </form>
               </div>
             </div>
@@ -55,6 +70,13 @@
   </div>
   <script src="{{asset('template/libs/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('template/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+  </script>
 </body>
 
 </html>
